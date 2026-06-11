@@ -44,7 +44,7 @@ def _read_float_env(name: str, *, required: bool = False, aliases: tuple[str, ..
 BOT_TOKEN = _read_env("BOT_TOKEN", required=True)
 DATABASE_URL = _read_env("DATABASE_URL", required=True)
 ADMIN_ID = _read_int_env("ADMIN_ID", required=True, aliases=("admin_id",))
-CUSTOM_API_URL = _read_env("CUSTOM_API_URL", required=True, aliases=("custom_api_url",))
+CUSTOM_API_URL = _read_env("CUSTOM_API_URL", required=False, aliases=("custom_api_url",))
 MEASUREMENT_ID = _read_env("MEASUREMENT_ID")
 API_SECRET = _read_env("API_SECRET")
 CHANNEL_ID = _read_env("CHANNEL_ID")
