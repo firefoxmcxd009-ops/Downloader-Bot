@@ -1,28 +1,33 @@
+import os
 from dataclasses import dataclass, field
 
 from sqlalchemy import (
+    TIMESTAMP,
     BigInteger,
     Column,
     ForeignKey,
     Index,
     Text,
-    TIMESTAMP,
     UniqueConstraint,
     func,
 )
 from sqlalchemy.orm import declarative_base, relationship
 
-from services.settings import SETTING_DISABLED
+# ត្រូវប្រាកដថាបាន import ទាំង SETTING_DISABLED និង SETTING_ENABLED ចូលមកប្រើ
+from services.settings import SETTING_DISABLED, SETTING_ENABLED
 
 Base = declarative_base()
 NON_DOWNLOAD_ACTIONS = ("start", "settings")
+
+# === ចំណុចកែប្រែទី ១៖ ប្តូរតម្លៃក្នុង Dictionary សម្រាប់គណនីថ្មីពី DISABLED ទៅ ENABLED ===
 DEFAULT_USER_SETTINGS = {
     "captions": SETTING_DISABLED,
     "delete_message": SETTING_DISABLED,
     "info_buttons": SETTING_DISABLED,
     "url_button": SETTING_DISABLED,
-    "audio_button": SETTING_DISABLED,
+    "audio_button": SETTING_ENABLED,  # <--- ប្តូរត្រង់នេះ (កូដចាស់: SETTING_DISABLED)
 }
+
 APP_SCHEMA_TABLES = frozenset(
     {
         "downloaded_files",
@@ -98,6 +103,8 @@ class Settings(Base):
     delete_message = Column(Text, default=SETTING_DISABLED, nullable=False)
     info_buttons = Column(Text, default=SETTING_DISABLED, nullable=False)
     url_button = Column(Text, default=SETTING_DISABLED, nullable=False)
-    audio_button = Column(Text, default=SETTING_DISABLED, nullable=False)
+    
+    # === ចំណុចកែប្រែទី ២៖ ប្តូរតម្លៃ Default នៅក្នុង Database Table ទៅជា SETTING_ENABLED ===
+    audio_button = Column(Text, default=SETTING_ENABLED, nullable=False)  # <--- ប្តូរត្រង់នេះ (កូដចាស់: SETTING_DISABLED)
 
     user = relationship("User", back_populates="settings")
