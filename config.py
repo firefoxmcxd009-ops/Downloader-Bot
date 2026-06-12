@@ -1,8 +1,32 @@
 import os
-
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
 from dotenv import load_dotenv
 
 load_dotenv()
+
+
+# === បន្ថែមប្រព័ន្ធ Web Server ក្លែងក្លាយដើម្បីបោក Render (ដូច Node.js HTTP server) ===
+class DummyHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/plain")
+        self.end_headers()
+        self.wfile.write(b"Bot is running...")
+
+    def log_message(self, format, *args):
+        pass # បិទការលោតរំខាននៅក្នុង Logs របស់ Render
+
+
+def run_port_server():
+    port = int(os.environ.get("PORT", 8000))
+    server = HTTPServer(("0.0.0.0", port), DummyHandler)
+    server.serve_forever()
+
+
+# បញ្ឆេះឱ្យរត់ក្នុង Background Thread ភ្លាមៗ (ដូចការប្រើព្រឹត្តិការណ៍ Asynchronous ក្នុង Node.js)
+threading.Thread(target=run_port_server, daemon=True).start()
+# =====================================================================
 
 
 def _read_env(name: str, *, required: bool = False, aliases: tuple[str, ...] = ()) -> str | None:
