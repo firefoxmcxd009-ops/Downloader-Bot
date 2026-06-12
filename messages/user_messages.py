@@ -1,60 +1,61 @@
 def cancel():
-    return "✖️ Cancel"
+    return "⏎ បោះបង់"
 
 
 def welcome_message():
     return (
-        '<b>Welcome to MaxLoad <tg-emoji emoji-id="5420141555233071341">❤️</tg-emoji></b>\n\n'
-        "Drop a link and I'll download media from:\n"
-        '<tg-emoji emoji-id="5233671414023753035">📷</tg-emoji> Instagram\n'
-        '<tg-emoji emoji-id="5233597424622144804">🎵</tg-emoji> TikTok\n'
-        '<tg-emoji emoji-id="5233311027612913110">▶️</tg-emoji> YouTube\n'
-        '<tg-emoji emoji-id="5231309843435919433">🐦</tg-emoji> X (Twitter)\n'
-        '<tg-emoji emoji-id="5233448977667492819">🎧</tg-emoji> SoundCloud\n'
-        '<tg-emoji emoji-id="5233210422298974231">📌</tg-emoji> Pinterest\n\n'
-        "Use /settings to customize captions, buttons, and chat auto-delete."
+        'សួរស្តី <a href="https://t.me/{user_name}">{full_name}</a> មកកាន់ <a href="https://t.me/amertak_downloaderbot">Amertak Downloader</a> ♡\n\n'
+        "ផ្ញើតំណភ្ជាប់ (Link) មួយ ឬច្រើនក្នុងសារតែមួយ ហើយខ្ញុំនឹងទាញយកវីដេអូ/រូបភាពតាមដែលអាចធ្វើបាន។\n\n"
+        "◆ <b>គេហទំព័រដែលគាំទ្រ៖</b>\n"
+        "☘ Instagram\n"
+        "☘ TikTok\n"
+        "☘ YouTube\n"
+        "☘ X (Twitter)\n"
+        "☘ SoundCloud\n"
+        "☘ Pinterest\n\n"
+        "✎ ប្រើប្រាស់ប៊ូតុងខាងក្រោមដើម្បីសាកល្បង Inline mode, កែការកំណត់ (Settings) ឬចែករំលែក Bot។"
     )
 
 
 def settings():
     return (
-        "<b>⚙️ Settings</b>\n"
-        "Use the buttons below to customize how downloads are sent. "
-        "These changes apply only to your account."
+        "<b>⚙ ការកំណត់</b>\n"
+        "ប្រើប្រាស់ប៊ូតុងខាងក្រោមដើម្បីកំណត់ទម្រង់នៃការផ្ញើឯកសារដែលបានទាញយក។ "
+        "ការផ្លាស់ប្តូរទាំងនេះនឹងអនុវត្តចំពោះតែគណនីរបស់អ្នកប៉ុណ្ណោះ។"
     )
 
 
 def settings_private_only():
     return (
-        "Settings are available only in private chat. Open DM with the bot to change preferences."
+        "🔒 ការកំណត់អាចធ្វើទៅបានតែនៅក្នុងការជជែកផ្ទាល់ខ្លួន (Private Chat) ប៉ុណ្ណោះ។ សូមបើកសារផ្ទាល់ជាមួយ Bot ដើម្បីផ្លាស់ប្តូរ។"
     )
 
 
 def get_field_text(field: str):
     texts = {
         "captions": (
-            "<b>📝 Descriptions</b>\n"
-            "Show or hide post captions in downloaded media. "
-            "Some sources may not provide captions."
+            "<b>📝 ការពិពណ៌នា (Captions)</b>\n"
+            "បង្ហាញ ឬលាក់ការពិពណ៌នារបស់ផុសនៅក្នុងមេឌៀដែលបានទាញយក។ "
+            "ប្រភពមួយចំនួនប្រហែលជាមិនមានការពិពណ៌នាឡើយ។"
         ),
         "delete_message": (
-            "<b>🗑️ Delete Messages</b>\n"
-            "Automatically remove your link once the download is handled."
+            "<b>🗑 លុបសារ</b>\n"
+            "លុបតំណភ្ជាប់ (Link) របស់អ្នកដោយស្វ័យប្រវត្តិ បន្ទាប់ពីការទាញយកត្រូវបានដំណើរការជោគជ័យ។"
         ),
         "info_buttons": (
-            "<b>ℹ️ Info Buttons</b>\n"
-            "Toggle additional info buttons under downloaded media."
+            "<b>ℹ ប៊ូតុងព័ត៌មាន</b>\n"
+            "បើក/បិទ ប៊ូតុងព័ត៌មានបន្ថែមនៅក្រោមមេឌៀដែលបានទាញយក។"
         ),
         "url_button": (
-            "<b>🔗 URL Button</b>\n"
-            "Show or hide a button with the original post link."
+            "<b>🔗 ប៊ូតុង URL</b>\n"
+            "បង្ហាញ ឬលាក់ប៊ូតុងដែលមានតំណភ្ជាប់ទៅកាន់ផុសដើម។"
         ),
         "audio_button": (
-            "<b>🎧 MP3 Button</b>\n"
-            "Toggle the Download MP3 button when audio is available."
+            "<b>🎧 ប៊ូតុង MP3</b>\n"
+            "បើក/បិទ ប៊ូតុងទាញយកឯកសារ MP3 នៅពេលមានសំឡេងដែលអាចទាញយកបាន។"
         ),
     }
-    return texts.get(field, "<b>Settings</b>\nThis option doesn't have a description yet.")
+    return texts.get(field, "<b>⚙ ការកំណត់</b>\nជម្រើសនេះមិនទាន់មានការពិពណ៌នានៅឡើយទេ។")
 
 
 def captions(user_captions, post_caption, bot_url, *, limit: int = 1024):
@@ -72,12 +73,11 @@ def captions(user_captions, post_caption, bot_url, *, limit: int = 1024):
             cut = cut[:amp]
         return cut
 
-    footer = '<tg-emoji emoji-id="5283080528818360566">🚀</tg-emoji> Powered by <a href="{bot_url}">MaxLoad</a>'.format(bot_url=bot_url)
+    footer = '🚀 <a href="{bot_url}">Amertak Downloader</a>'.format(bot_url=bot_url)
 
     if user_captions == "on" and post_caption:
         body = html.escape(str(post_caption))
         sep = "\n\n"
-        # Keep footer intact; only shrink the body.
         budget = limit - len(sep) - len(footer)
         if budget <= 0:
             return _truncate_escaped(footer, limit)
@@ -92,226 +92,188 @@ def captions(user_captions, post_caption, bot_url, *, limit: int = 1024):
 
 
 def downloading_audio_status():
-    return "🎧 Downloading audio..."
+    return "🎧 កំពុងទាញយកសំឡេង..."
 
 
 def downloading_video_status():
-    return "<tg-emoji emoji-id='5375464961822695044'>🎬</tg-emoji> Downloading video..."
-
+    return "🎬 កំពុងទាញយកវីដេអូ..."
 
 
 def uploading_status():
-    return "☁️ Uploading file to Telegram..."
+    return "◆ កំពុងបង្ហោះឯកសារទៅកាន់ Telegram..."
 
 
 def timeout_error():
-    return "<tg-emoji emoji-id='5413704112220949842'>⏰</tg-emoji> Request timed out. Please try again later."
+    return "⏰ អស់ពេលស្នើសុំ។ ប្រភពដើមប្រហែលជាកំពុងមានភាពយឺតយ៉ាវ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
 
 
 def retrying_again_status(next_attempt: int, total_attempts: int):
-    return f"Error, trying again... ({next_attempt}/{total_attempts})"
+    return f"⚠ មានកំហុស កំពុងព្យាយាមម្តងទៀត... ({next_attempt}/{total_attempts})"
 
 
 def dm_start_required():
-    return "<tg-emoji emoji-id='5472308992514464048'>🔒</tg-emoji> First-time setup needed: open DM, press Start, and resend the link."
+    return "🔒 ចាំបាច់ត្រូវរៀបចំជាលើកដំបូង៖ សូមបើកឆាតផ្ទាល់ខ្លួន ចុច Start រួចផ្ញើតំណភ្ជាប់មកម្តងទៀត។"
 
 
 def duplicate_link_processing():
-    return "This link is already being processed. Wait a few seconds."
+    return "◆ តំណភ្ជាប់នេះកំពុងត្រូវបានដំណើរការហើយ។ សូមរង់ចាំពីរបីវិនាទី។"
 
 
 def duplicate_link_recently_processed():
-    return "This link was just handled. If you still need it, try again in a few seconds."
+    return "◆ តំណភ្ជាប់នេះទើបតែត្រូវបានដំណើរការរួចរាល់។ ប្រសិនបើអ្នកនៅតែត្រូវការវា សូមព្យាយាមម្តងទៀតក្នុងពេលបន្តិចទៀត។"
 
 
 def settings_admin_only():
-    return "Only group admins can open /settings in group chats."
+    return "⚠ មានតែអ្នកគ្រប់គ្រងក្រុម (Group Admins) ប៉ុណ្ណោះដែលអាចប្រើ /settings នៅក្នុងក្រុមបាន។"
 
 
 def invalid_settings_option():
-    return "Invalid settings option."
+    return "⚠ ជម្រើសការកំណត់មិនត្រឹមត្រូវ។"
 
 
 def join_group(chat_title: str) -> str:
     return (
-        "Thanks for adding me to <b>{chat_title}</b> <tg-emoji emoji-id='5280764381804650651'>🌸</tg-emoji>\n"
-        "Please grant me <b>admin rights</b> to unlock full functionality 🔓"
+        "សូមអរគុណសម្រាប់ការបន្ថែមខ្ញុំទៅក្នុងក្រុម <b>{chat_title}</b> ♡\n"
+        "សូមផ្តល់ <b>សិទ្ធិជាអ្នកគ្រប់គ្រង (Admin Rights)</b> ដល់ខ្ញុំ ដើម្បីអាចដំណើរការមុខងារបានពេញលេញ 🔓"
     ).format(chat_title=chat_title)
 
 
 def admin_rights_granted(chat_title: str) -> str:
     return (
-        "Thanks for granting admin rights in <b>{chat_title}</b> <tg-emoji emoji-id='5280764381804650651'>🌸</tg-emoji>\n"
-        "💻 I'll keep downloads running smoothly."
+        "សូមអរគុណសម្រាប់ការផ្តល់សិទ្ធិជាអ្នកគ្រប់គ្រងនៅក្នុងក្រុម <b>{chat_title}</b> ☘\n"
+        "✎ ខ្ញុំនឹងរក្សាការទាញយកឲ្យដំណើរការទៅដោយរលូន។"
     ).format(chat_title=chat_title)
 
 
 def something_went_wrong():
-    return "<tg-emoji emoji-id='5447644880824181073'>⚠️</tg-emoji> Couldn't process this link right now. \nPlease try again later."
+    return (
+        "⚠ មិនអាចដំណើរការតំណភ្ជាប់នេះបានទេនៅពេលនេះ។\n"
+        "វាអាចជាគណនីឯកជន (Private), ត្រូវបានលុប, ជាប់កម្រិតតំបន់ ឬត្រូវបានរារាំងជាបណ្តោះអាសន្នពីប្រភពដើម។ "
+        "សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
+    )
 
 
 def video_too_large():
-    return "The video is too large for Telegram."
+    return "⚠ វីដេអូនេះមានទំហំធំពេកសម្រាប់ Telegram។ សូមសាកល្បងវីដេអូដែលមានរយៈពេលខ្លីជាងនេះ ឬជ្រើសរើសជម្រើស MP3/សំឡេង បើមាន។"
 
 
 def audio_too_large():
-    return "The audio is too large for Telegram."
+    return "⚠ ឯកសារសំឡេងនេះមានទំហំធំពេកសម្រាប់ Telegram។ សូមសាកល្បងបទចម្រៀងដែលខ្លីជាងនេះ ឬប្រើប្រាស់តំណភ្ជាប់ផ្សេងទៀត។"
 
 
 def nothing_found():
-    return (
-        "No media found. Check the link and try again."
-    )
+    return "⚠ រកមិនឃើញមេឌៀឡើយ។ សូមពិនិត្យមើលថាតើតំណភ្ជាប់នោះជាសាធារណៈ (Public) មិនទាន់ហួសកំណត់ និងនាំទៅកាន់ផុស ឬវីដេអូដោយផ្ទាល់។"
 
 
 def keyboard_removed():
-    return "Reply keyboard removed."
+    return "⏎ បានលុប Reply Keyboard ចេញរួចរាល់។"
 
 
 def tiktok_live_not_supported():
-    return "TikTok LIVE streams aren't supported yet. Send a regular TikTok post link."
+    return "⚠ មិនទាន់គាំទ្រការទាញយក TikTok LIVE នៅឡើយទេ។ សូមផ្ញើតំណភ្ជាប់នៃផុស TikTok ធម្មតា។"
 
 
 def delete_permission_warning():
-    return "Auto-delete failed: missing permission to delete messages in this chat. Please grant delete permissions or turn off auto-delete in settings."
+    return "⚠ ការលុបស្វ័យប្រវត្តិបានបរាជ័យ៖ ខ្វះសិទ្ធិក្នុងការលុបសារនៅក្នុងក្រុមនេះ។ សូមផ្តល់សិទ្ធិលុបសារ ឬបិទមុខងារលុបស្វ័យប្រវត្តនៅក្នុងការកំណត់ (Settings)។"
 
 
 def stats_temporarily_unavailable():
-    return "Couldn't generate stats right now. Please try again later."
+    return "⚠ មិនអាចបង្កើតទិន្នន័យស្ថិតិបានទេនៅពេលនេះ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
 
 
 def no_queue_metrics_yet():
-    return "No queue metrics yet."
+    return "◆ មិនទាន់មានទិន្នន័យជួររង់ចាំ (Queue) នៅឡើយទេ។"
 
 
 def open_bot_for_audio():
-    return "Open the bot in private chat to download audio."
+    return "🎧 សូមបើក Bot នៅក្នុងឆាតផ្ទាល់ខ្លួនដើម្បីទាញយកឯកសារសំឡេង។"
 
 
 def audio_fetch_failed():
-    return "Failed to get audio info. Please try again later."
+    return "⚠ ការទាញយកព័ត៌មានសំឡេងបានបរាជ័យ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
 
 
 def audio_download_failed():
-    return "Audio download failed. Please try again later."
+    return "⚠ ការទាញយកឯកសារសំឡេងបានបរាជ័យ。 សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ。"
 
 
 def inline_album_link_invalid():
-    return "This album link is expired or invalid."
+    return "⚠ តំណភ្ជាប់អាល់ប៊ុមនេះបានហួសកំណត់ ឬមិនត្រឹមត្រូវ។"
 
 
 def inline_photo_title(service_name: str):
-    return f"{service_name} Photo"
+    return f"រូបភាព {service_name}"
 
 
 def inline_photo_description():
-    return "Single photo"
+    return "រូបភាពទោល"
 
 
 def inline_album_title(service_name: str):
-    return f"{service_name} Album"
+    return f"អាល់ប៊ុម {service_name}"
 
 
 def inline_album_description():
-    return "Open full album in bot"
+    return "បើកអាល់ប៊ុមពេញនៅក្នុង Bot"
 
 
 def inline_open_full_album_button():
-    return "Open Full Album"
+    return "◆ បើកអាល់ប៊ុមពេញ"
 
 
 def inline_photos_title(service_name: str):
-    return f"{service_name} Photos"
+    return f"រូបភាព {service_name}"
 
 
 def inline_photos_not_supported(service_name: str):
-    return f"{service_name} photos are not supported inline."
+    return f"រូបភាពរបស់ {service_name} មិនគាំទ្រនៅលើ Inline mode ឡើយ។"
 
 
 def inline_send_video_button():
-    return "Send video inline"
+    return "◆ ផ្ញើវីដេអូជា Inline"
 
 
 def inline_send_video_prompt(service_name: str):
-    return f"{service_name} video is being prepared...\nIf it does not start automatically, tap the button below."
+    return f"វីដេអូរបស់ {service_name} កំពុងត្រូវបានរៀបចំ...\nប្រសិនបើវាមិនចាប់ផ្តើមដោយស្វ័យប្រវត្តិទេ សូមចុចប៊ូតុងខាងក្រោម។"
 
 
 def inline_send_audio_prompt(service_name: str):
-    return f"{service_name} audio is being prepared...\nIf it does not start automatically, tap the button below."
+    return f"សំឡេងរបស់ {service_name} កំពុងត្រូវបានរៀបចំ...\nប្រសិនបើវាមិនចាប់ផ្តើមដោយស្វ័យប្រវត្តិទេ សូមចុចប៊ូតុងខាងក្រោម។"
 
 
 def inline_video_already_processing():
-    return "This inline video is already being prepared."
+    return "◆ វីដេអូ Inline នេះកំពុងស្ថិតក្នុងរៀបចំរួចរាល់ហើយ។"
 
 
 def inline_video_already_sent():
-    return "This inline video was already sent."
-
-
-def welcome_message():
-    return (
-        '<b>Welcome to MaxLoad <tg-emoji emoji-id="5420141555233071341">❤️</tg-emoji></b>\n\n'
-        "Send one link, or paste several links in one message, and I'll download what I can.\n\n"
-        "<b>Supported sites</b>\n"
-        '<tg-emoji emoji-id="5233671414023753035">📷</tg-emoji> Instagram\n'
-        '<tg-emoji emoji-id="5233597424622144804">🎵</tg-emoji> TikTok\n'
-        '<tg-emoji emoji-id="5233311027612913110">▶️</tg-emoji> YouTube\n'
-        '<tg-emoji emoji-id="5231309843435919433">🐦</tg-emoji> X / Twitter\n'
-        '<tg-emoji emoji-id="5233448977667492819">🎧</tg-emoji> SoundCloud\n'
-        '<tg-emoji emoji-id="5233210422298974231">📌</tg-emoji> Pinterest\n\n'
-        "Use the buttons below to try inline mode, tune settings, or share the bot."
-    )
+    return "◆ វីដេអូ Inline នេះត្រូវបានផ្ញើរួចហើយ។"
 
 
 def supported_sites_message():
     return (
-        "<b>Supported sites</b>\n\n"
-        "Instagram posts, reels, and albums\n"
-        "TikTok videos, photo posts, and profiles\n"
-        "YouTube videos and YouTube Music links\n"
-        "X / Twitter posts\n"
-        "SoundCloud tracks\n"
-        "Pinterest pins\n\n"
-        "You can send several supported links in one message. MaxLoad will handle them one by one."
+        "<b>◆ គេហទំព័រដែលគាំទ្រ</b>\n\n"
+        "☘ Instagram: ផុស, Reels, និងអាល់ប៊ុម\n"
+        "☘ TikTok: វីដេអូ, ផុសរូបភាព, និងកម្រងព័ត៌មាន (Profiles)\n"
+        "☘ YouTube: វីដេអូ និងតំណភ្ជាប់ YouTube Music\n"
+        "☘ X / Twitter: រាល់ផុសទាំងអស់\n"
+        "☘ SoundCloud: រាល់បទចម្រៀង\n"
+        "☘ Pinterest: រាល់ការរក្សាទុក (Pins)\n\n"
+        "អ្នកអាចផ្ញើតំណភ្ជាប់ដែលគាំទ្រជាច្រើនក្នុងសារតែមួយ។ Amertak Downloader នឹងដំណើរការពួកវាម្តងមួយៗ។"
     )
 
 
 def batch_links_started(processed_total: int, detected_total: int | None = None):
     if detected_total is not None and detected_total > processed_total:
         return (
-            f"Found {detected_total} supported links. "
-            f"I'll process the first {processed_total} one by one so the chat stays readable."
+            f"◆ រកឃើញតំណភ្ជាប់ដែលគាំទ្រចំនួន {detected_total}។ "
+            f"ខ្ញុំនឹងដំណើរការ {processed_total} ដំបូងម្តងមួយៗ ដើម្បីកុំឱ្យការជជែកមានភាពរញ៉េរញ៉ៃ។"
         )
-    return f"Found {processed_total} supported links. I'll process them one by one so the chat stays readable."
+    return f"◆ រកឃើញតំណភ្ជាប់ដែលគាំទ្រចំនួន {processed_total}។ ខ្ញុំនឹងដំណើរការពួកវាម្តងមួយៗ ដើម្បីកុំឱ្យការជជែកមានភាពរញ៉េរញ៉ៃ"
 
 
 def batch_link_progress(current: int, total: int, service_name: str):
-    return f"Processing link {current}/{total}: {service_name}..."
+    return f"✎ កំពុងដំណើរការតំណភ្ជាប់ទី {current}/{total}: {service_name}..."
 
 
 def batch_links_finished(total: int):
-    return f"Finished batch processing for {total} links."
-
-
-def timeout_error():
-    return "Request timed out. The source may be slow right now. Please try again later."
-
-
-def something_went_wrong():
-    return (
-        "Couldn't process this link right now.\n"
-        "It may be private, deleted, region-limited, or temporarily blocked by the source. "
-        "Please try again later."
-    )
-
-
-def video_too_large():
-    return "The video is too large for Telegram. Try a shorter video or an MP3/audio option if available."
-
-
-def audio_too_large():
-    return "The audio is too large for Telegram. Try a shorter track or another source link."
-
-
-def nothing_found():
-    return "No media found. Check that the link is public, not expired, and points directly to a post or video."
+    return f"✓ បានបញ្ចប់ការដំណើរការជាក្រុមសម្រាប់តំណភ្ជាប់ចំនួន {total} រួចរាល់។"
