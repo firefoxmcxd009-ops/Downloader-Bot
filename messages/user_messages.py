@@ -1,8 +1,13 @@
 def cancel():
-    return "⏎ បោះបង់"
+    return "✕ បោះបង់"
 
 
-def welcome_message():
+def welcome_message(user_name: str, full_name: str) -> str:
+    import html
+    # ប្រើប្រាស់ html.escape เพื่อការពារកំហុសឆ្គងពីអក្សរពិសេសក្នុងឈ្មោះ user
+    u_name = html.escape(str(user_name))
+    f_name = html.escape(str(full_name))
+    
     return (
         'សួរស្តី <a href="https://t.me/{user_name}">{full_name}</a> មកកាន់ <a href="https://t.me/amertak_downloaderbot">Amertak Downloader</a> ♡\n\n'
         "ផ្ញើតំណភ្ជាប់ (Link) មួយ ឬច្រើនក្នុងសារតែមួយ ហើយខ្ញុំនឹងទាញយកវីដេអូ/រូបភាពតាមដែលអាចធ្វើបាន។\n\n"
@@ -14,7 +19,7 @@ def welcome_message():
         "☘ SoundCloud\n"
         "☘ Pinterest\n\n"
         "✎ ប្រើប្រាស់ប៊ូតុងខាងក្រោមដើម្បីសាកល្បង Inline mode, កែការកំណត់ (Settings) ឬចែករំលែក Bot។"
-    )
+    ).format(user_name=u_name, full_name=f_name)
 
 
 def settings():
@@ -124,7 +129,7 @@ def duplicate_link_recently_processed():
 
 
 def settings_admin_only():
-    return "⚠ មានតែអ្នកគ្រប់គ្រងក្រុម (Group Admins) ប៉ុណ្ណោះដែលអាចប្រើ /settings នៅក្នុងក្រុមបាន។"
+    return "⚠ 有តែអ្នកគ្រប់គ្រងក្រុម (Group Admins) ប៉ុណ្ណោះដែលអាចប្រើ /settings នៅក្នុងក្រុមបាន។"
 
 
 def invalid_settings_option():
@@ -149,7 +154,7 @@ def something_went_wrong():
     return (
         "⚠ មិនអាចដំណើរការតំណភ្ជាប់នេះបានទេនៅពេលនេះ។\n"
         "វាអាចជាគណនីឯកជន (Private), ត្រូវបានលុប, ជាប់កម្រិតតំបន់ ឬត្រូវបានរារាំងជាបណ្តោះអាសន្នពីប្រភពដើម។ "
-        "សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
+        "សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ。"
     )
 
 
@@ -166,7 +171,7 @@ def nothing_found():
 
 
 def keyboard_removed():
-    return "⏎ បានលុប Reply Keyboard ចេញរួចរាល់។"
+    return "✕ បានលុបផ្ទាំងចុចបញ្ជា (Reply Keyboard) ចេញរួចរាល់។"
 
 
 def tiktok_live_not_supported():
@@ -194,7 +199,7 @@ def audio_fetch_failed():
 
 
 def audio_download_failed():
-    return "⚠ ការទាញយកឯកសារសំឡេងបានបរាជ័យ。 សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ。"
+    return "⚠ ការទាញយកឯកសារសំឡេងបានបរាជ័យ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។"
 
 
 def inline_album_link_invalid():
@@ -217,6 +222,7 @@ def inline_album_description():
     return "បើកអាល់ប៊ុមពេញនៅក្នុង Bot"
 
 
+# បកប្រែប៊ូតុង (Button Messages) ទៅជាភាសាខ្មែរ និងដាក់ Font Symbols
 def inline_open_full_album_button():
     return "◆ បើកអាល់ប៊ុមពេញ"
 
@@ -266,9 +272,9 @@ def batch_links_started(processed_total: int, detected_total: int | None = None)
     if detected_total is not None and detected_total > processed_total:
         return (
             f"◆ រកឃើញតំណភ្ជាប់ដែលគាំទ្រចំនួន {detected_total}។ "
-            f"ខ្ញុំនឹងដំណើរការ {processed_total} ដំបូងម្តងមួយៗ ដើម្បីកុំឱ្យការជជែកមានភាពរញ៉េរញ៉ៃ។"
+            f" I'll process the first {processed_total} ខ្ញុំនឹងដំណើរការ {processed_total} ដំបូងម្តងមួយៗ ដើម្បីកុំឱ្យការជជែកមានភាពរញ៉េរញ៉ៃ។"
         )
-    return f"◆ រកឃើញតំណភ្ជាប់ដែលគាំទ្រចំនួន {processed_total}។ ខ្ញុំនឹងដំណើរការពួកវាម្តងមួយៗ ដើម្បីកុំឱ្យការជជែកមានភាពរញ៉េរញ៉ៃ"
+    return f"◆ រកឃើញតំណភ្ជាប់ដែលគាំទ្រចំនួន {processed_total}។ ខ្ញុំនឹងដំណើរការពួកវាម្តងមួយៗ ដើម្បីកុំឱ្យការជជែកមានភាពរញ៉េរញ៉ៃ។"
 
 
 def batch_link_progress(current: int, total: int, service_name: str):
