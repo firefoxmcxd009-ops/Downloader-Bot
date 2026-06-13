@@ -2,14 +2,21 @@ def cancel():
     return "✕ បោះបង់"
 
 
-def welcome_message(user_name: str, full_name: str) -> str:
+def welcome_message(full_name: str, user_name: str = None, user_id: int = None) -> str:
     import html
-    # ប្រើប្រាស់ html.escape เพื่อការពារកំហុសឆ្គងពីអក្សរពិសេសក្នុងឈ្មោះ user
-    u_name = html.escape(str(user_name))
     f_name = html.escape(str(full_name))
     
+    # ការពារ Error នៅពេល User អត់មាន Username
+    if user_name:
+        u_name = html.escape(str(user_name))
+        user_link = f'<a href="https://t.me/{u_name}">{f_name}</a>'
+    elif user_id:
+        user_link = f'<a href="tg://user?id={user_id}">{f_name}</a>'
+    else:
+        user_link = f'<b>{f_name}</b>'
+
     return (
-        'សួរស្តី <a href="https://t.me/{user_name}">{full_name}</a> មកកាន់ <a href="https://t.me/amertak_downloaderbot">Amertak Downloader</a> ♡\n\n'
+        f'សួរស្តី {user_link} មកកាន់ <a href="https://t.me/amertak_downloaderbot">Amertak Downloader</a> ♡\n\n'
         "ផ្ញើតំណភ្ជាប់ (Link) មួយ ឬច្រើនក្នុងសារតែមួយ ហើយខ្ញុំនឹងទាញយកវីដេអូ/រូបភាពតាមដែលអាចធ្វើបាន។\n\n"
         "◆ <b>គេហទំព័រដែលគាំទ្រ៖</b>\n"
         "☘ Instagram\n"
@@ -19,7 +26,7 @@ def welcome_message(user_name: str, full_name: str) -> str:
         "☘ SoundCloud\n"
         "☘ Pinterest\n\n"
         "✎ ប្រើប្រាស់ប៊ូតុងខាងក្រោមដើម្បីសាកល្បង Inline mode, កែការកំណត់ (Settings) ឬចែករំលែក Bot។"
-    ).format(user_name=u_name, full_name=f_name)
+    )
 
 
 def settings():
@@ -129,7 +136,7 @@ def duplicate_link_recently_processed():
 
 
 def settings_admin_only():
-    return "⚠ 有តែអ្នកគ្រប់គ្រងក្រុម (Group Admins) ប៉ុណ្ណោះដែលអាចប្រើ /settings នៅក្នុងក្រុមបាន។"
+    return "⚠ មានតែអ្នកគ្រប់គ្រងក្រុម (Group Admins) ប៉ុណ្ណោះដែលអាចប្រើ /settings នៅក្នុងក្រុមបាន។"
 
 
 def invalid_settings_option():
@@ -222,7 +229,6 @@ def inline_album_description():
     return "បើកអាល់ប៊ុមពេញនៅក្នុង Bot"
 
 
-# បកប្រែប៊ូតុង (Button Messages) ទៅជាភាសាខ្មែរ និងដាក់ Font Symbols
 def inline_open_full_album_button():
     return "◆ បើកអាល់ប៊ុមពេញ"
 
@@ -272,7 +278,7 @@ def batch_links_started(processed_total: int, detected_total: int | None = None)
     if detected_total is not None and detected_total > processed_total:
         return (
             f"◆ រកឃើញតំណភ្ជាប់ដែលគាំទ្រចំនួន {detected_total}។ "
-            f" I'll process the first {processed_total} ខ្ញុំនឹងដំណើរការ {processed_total} ដំបូងម្តងមួយៗ ដើម្បីកុំឱ្យការជជែកមានភាពរញ៉េរញ៉ៃ។"
+            f"ខ្ញុំនឹងដំណើរការ {processed_total} ដំបូងម្តងមួយៗ ដើម្បីកុំឱ្យការជជែកមានភាពរញ៉េរញ៉ៃ។"
         )
     return f"◆ រកឃើញតំណភ្ជាប់ដែលគាំទ្រចំនួន {processed_total}។ ខ្ញុំនឹងដំណើរការពួកវាម្តងមួយៗ ដើម្បីកុំឱ្យការជជែកមានភាពរញ៉េរញ៉ៃ។"
 
