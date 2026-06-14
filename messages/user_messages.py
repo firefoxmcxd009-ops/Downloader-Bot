@@ -2,11 +2,11 @@ def cancel():
     return "✕ បោះបង់"
 
 
-def welcome_message(full_name: str, user_name: str = None, user_id: int = None) -> str:
+def welcome_message(full_name: str = "អ្នកប្រើប្រាស់", user_name: str = None, user_id: int = None) -> str:
     import html
     f_name = html.escape(str(full_name))
     
-    # ការពារ Error នៅពេល User អត់មាន Username
+    # បង្កើត Link ឈ្មោះ User ដោយស្វ័យប្រវត្ត បើគ្មានទិន្នន័យទេវានឹងដាក់ "អ្នកប្រើប្រាស់"
     if user_name:
         u_name = html.escape(str(user_name))
         user_link = f'<a href="https://t.me/{u_name}">{f_name}</a>'
@@ -32,7 +32,7 @@ def welcome_message(full_name: str, user_name: str = None, user_id: int = None) 
 def settings():
     return (
         "<b>⚙ ការកំណត់</b>\n"
-        "ប្រើប្រាស់ប៊ូតុងខាងក្រោមដើម្បីកំណត់ទម្រង់នៃការផ្ញើឯកសារដែលបានទាញយក។ "
+        "ប្រើប្រាស់ប៊ូតុងខាងក្រោមដើម្បីកំណត់ទម្រង់នៃការផ្ញើឯកសារដែលបានទាញយក。 "
         "ការផ្លាស់ប្តូរទាំងនេះនឹងអនុវត្តចំពោះតែគណនីរបស់អ្នកប៉ុណ្ណោះ។"
     )
 
@@ -48,7 +48,7 @@ def get_field_text(field: str):
         "captions": (
             "<b>📝 ការពិពណ៌នា (Captions)</b>\n"
             "បង្ហាញ ឬលាក់ការពិពណ៌នារបស់ផុសនៅក្នុងមេឌៀដែលបានទាញយក។ "
-            "ប្រភពមួយចំនួនប្រហែលជាមិនមានការពិពណ៌នាឡើយ។"
+            "ប្រភពមួយចំនួនប្រហែលជាមិនមានការពិពណ៌នាឡើយ。"
         ),
         "delete_message": (
             "<b>🗑 លុបសារ</b>\n"
